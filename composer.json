@@ -1,5 +1,5 @@
 {
-    "name": "SHA256Encript/AESEncrypter",
+    "name": "sha256encript/aes-encrypter",
     "description": "SHA256 Hash & AES-256-CBC Encrypt/Decrypt SDK for PHP",
     "version": "2.0.0",
     "license": "MIT",
