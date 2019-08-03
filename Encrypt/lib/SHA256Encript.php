@@ -8,15 +8,12 @@ class SHA256Encript
         $ipAddress = $this->getRealIpAddr();
 
         $input = sprintf("%s*%s*%s*%s*%s", $ipAddress, $comercio, $sucursal, $amount, $secretKey);
-
         $inputArray = utf8_encode($input);
-        $hashedArray = unpack('C*', hash( "sha256", $inputArray,true ));
-
+        $hashedArray = unpack('C*', hash( "sha256", $inputArray, true));
         $string = null;
         for ($i = 1; $i <= count($hashedArray); $i++) {
-            $string .= strtolower(dechex($hashedArray[$i]));
+            $string .= str_pad(strtolower(dechex($hashedArray[$i])), 2, '0', STR_PAD_LEFT);
         }
-
         return $string;
     }
 
