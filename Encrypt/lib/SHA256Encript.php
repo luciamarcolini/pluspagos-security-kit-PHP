@@ -5,7 +5,10 @@ class SHA256Encript
 {
     public function Generate($ipAddress, $secretKey, $comercio, $sucursal, $amount)
     {
-        $ipAddress = $this->getRealIpAddr();
+		if($this->IsNullOrEmptyString($ipAddress))
+		{
+			$ipAddress = $this->getRealIpAddr();
+		}
 
         $input = sprintf("%s*%s*%s*%s*%s", $ipAddress, $comercio, $sucursal, $amount, $secretKey);
         $inputArray = utf8_encode($input);
@@ -27,4 +30,8 @@ class SHA256Encript
 
         return $_SERVER['REMOTE_ADDR'];
     }
+	
+	private function IsNullOrEmptyString($str){
+		return (!isset($str) || trim($str) === '');
+	}
 }
