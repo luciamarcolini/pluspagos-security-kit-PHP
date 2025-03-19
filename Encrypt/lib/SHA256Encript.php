@@ -11,8 +11,9 @@ class SHA256Encript
 		}
 
         $input = sprintf("%s*%s*%s*%s*%s", $ipAddress, $comercio, $sucursal, $amount, $secretKey);
-        $inputArray = utf8_encode($input);
-        $hashedArray = unpack('C*', hash( "sha256", $inputArray, true));
+
+        $inputArray = iconv('ISO-8859-1', 'UTF-8//TRANSLIT', $input);// Assuming input is in ISO-8859-1
+        $hashedArray = unpack('C*', hash("sha256", $inputArray, true));
         $string = null;
         for ($i = 1; $i <= count($hashedArray); $i++) {
             $string .= str_pad(strtolower(dechex($hashedArray[$i])), 2, '0', STR_PAD_LEFT);
